@@ -1,3 +1,4 @@
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -10,6 +11,8 @@ interface Props{
 }
 
 export const Doctores = ({item,index}:Props) => {
+  const navigation = useNavigation();
+
   return (
     <View>
       {
@@ -17,11 +20,12 @@ export const Doctores = ({item,index}:Props) => {
           <TouchableOpacity
             activeOpacity={0.6}
             style={styles.container}
+            onPress={ ()=> navigation.dispatch(CommonActions.navigate('Detail',item ))}
           >
             <Image source={require('../images/doctor-icon.png')} style={styles.img}/>
             <View>
-                <Text>{item.name}</Text>
-                <Text>{item.especialidad}</Text>
+                <Text style={styles.title}>{item.name}</Text>
+                <Text style={styles.espe}>{item.especialidad}</Text>
             </View>
             <Icon name='chevron-forward-outline' size={ 40 } color='green'/>
           </TouchableOpacity>
@@ -55,5 +59,12 @@ const styles = StyleSheet.create({
     width:70,
     height:70,
     borderRadius:100
+  },
+  title:{
+    fontWeight:'bold',
+    fontSize:18
+  },
+  espe:{
+    color:'gray'
   }
 });
