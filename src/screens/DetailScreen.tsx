@@ -1,8 +1,10 @@
+import { useNavigation } from '@react-navigation/native';
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import  Icon  from 'react-native-vector-icons/Ionicons';
 import { Boton } from '../components/Boton';
 import { Calendario } from '../components/Calendario';
 import { Horarios } from '../components/Horarios';
@@ -18,6 +20,13 @@ export const DetailScreen = ({route,navigation}:Props) => {
         <ScrollView>
             <SafeAreaView style={{flex:1}}>
                 <StatusBar barStyle="light-content" backgroundColor='#AC58FA' />
+                <TouchableOpacity 
+                    activeOpacity={1}
+                    style={{backgroundColor:'#AC58FA'}}
+                    onPress={ ()=> navigation.goBack() }
+                >
+                    <Icon name='arrow-back-outline' size={25} color='white'/>
+                </TouchableOpacity>
                 <View style={styles.perfil}>
                     <Image 
                         source={require('../images/doctor-icon.png')}

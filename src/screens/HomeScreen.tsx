@@ -1,3 +1,4 @@
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react'
 import { Text, View,SafeAreaView, StatusBar, StyleSheet,TouchableOpacity, FlatList } from 'react-native';
 import  Icon  from 'react-native-vector-icons/Ionicons';
@@ -7,7 +8,7 @@ import { Doctores } from '../components/Doctores';
 import { DataDoctores } from '../data/dataDoctores';
 
 export const HomeScreen = ()=> {
-
+    const navigation = useNavigation();
     return (
         <SafeAreaView style={{flex:1,backgroundColor:'#2E64FE'}}>
             <StatusBar barStyle="light-content" backgroundColor='#2E64FE' />
@@ -27,14 +28,10 @@ export const HomeScreen = ()=> {
                     marginTop:20
                 }}>
                     <Text style={styles.text}>Doctores</Text>
-                    <TouchableOpacity>
-                        <Text style={{
-                                ...styles.text,
-                                backgroundColor:'gray',
-                                paddingLeft:10,
-                                paddingRight:10,
-                                borderRadius:20,
-                            }}>
+                    <TouchableOpacity 
+                        onPress={ ()=>navigation.dispatch(CommonActions.navigate('Doctores')) }
+                    >
+                        <Text style={{...styles.text, ...styles.all }}>
                             All
                         </Text>
                     </TouchableOpacity>
@@ -73,5 +70,11 @@ const styles = StyleSheet.create({
         color:'white',
         fontSize:18,
         fontWeight:'bold',        
+    },
+    all:{
+        backgroundColor:'gray',
+        paddingLeft:10,
+        paddingRight:10,
+        borderRadius:20,
     }
 });
