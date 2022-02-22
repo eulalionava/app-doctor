@@ -13,6 +13,7 @@ export const DoctoresScreen = () => {
         {
             DataDoctores.map( doc =>(
                 <TouchableOpacity 
+                    key={ doc.id}
                     style={styles.content} 
                     activeOpacity={0.6}
                     onPress={()=>navigation.dispatch(CommonActions.navigate('Detail',doc ))}

@@ -15,6 +15,10 @@ interface Props extends StackScreenProps<RootStackParam,'Detail'>{};
 export const DetailScreen = ({route,navigation}:Props) => {
     const param =  route.params;
     const [horario,setHorario] = useState(0);
+
+    const seleccionarHora =(tipo:number)=>{
+        setHorario(tipo);
+    }
     
     return (
         <ScrollView>
@@ -47,6 +51,7 @@ export const DetailScreen = ({route,navigation}:Props) => {
                 <Calendario/>
                 <View style={{flexDirection:'row',justifyContent:'space-between',marginHorizontal:10}}>
                     <TouchableOpacity 
+                        onPress={ ()=>seleccionarHora(0) }
                         style={{
                             ...styles.hora,
                             backgroundColor: horario === 0 ? '#00BFFF':'white'
@@ -55,6 +60,7 @@ export const DetailScreen = ({route,navigation}:Props) => {
                         <Text style={{fontWeight:'bold',fontSize:20}}>AM</Text>
                     </TouchableOpacity>
                     <TouchableOpacity 
+                        onPress={ ()=>seleccionarHora(1) }
                         style={{
                             ...styles.hora,
                             backgroundColor: horario === 1 ? '#00BFFF':'white'
